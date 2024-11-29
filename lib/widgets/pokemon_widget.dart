@@ -58,16 +58,6 @@ class PokemonWidget extends StatelessWidget {
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    pokemonModel.types.join(", "),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade600,
-                    ),
-                  ),
                 ],
               ),
             ),
