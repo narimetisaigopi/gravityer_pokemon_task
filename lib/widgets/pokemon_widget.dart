@@ -5,6 +5,7 @@ import 'package:gravityer_pokemon_task/models/pokemon_model.dart';
 
 class PokemonWidget extends StatelessWidget {
   final PokemonModel pokemonModel;
+
   const PokemonWidget({super.key, required this.pokemonModel});
 
   @override
@@ -13,22 +14,62 @@ class PokemonWidget extends StatelessWidget {
       onTap: () {
         Get.toNamed('/details', arguments: pokemonModel);
       },
+      borderRadius: BorderRadius.circular(12),
       child: Hero(
         tag: pokemonModel.id,
         child: Container(
           padding: const EdgeInsets.all(8),
           child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             elevation: 5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CachedNetworkImage(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CachedNetworkImage(
                     imageUrl: pokemonModel.images.small,
                     height: 100,
-                    width: 100),
-                const SizedBox(height: 8),
-                Text(pokemonModel.name),
-              ],
+                    width: 100,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Container(
+                      height: 100,
+                      width: 100,
+                      alignment: Alignment.center,
+                      child: const CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.error,
+                      size: 50,
+                      color: Colors.red.shade400,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    pokemonModel.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    pokemonModel.types.join(", "),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

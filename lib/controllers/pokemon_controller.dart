@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:gravityer_pokemon_task/models/pokemon_model.dart';
 import 'dart:convert';
@@ -38,7 +39,32 @@ class PokemonController extends GetxController {
         currentPage = page;
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  void fetchSearchResults(String query) async {
+    if (isLoading.value) return;
+    pokemonModelList.clear();
+    try {
+      isLoading(true);
+      final response = await http
+          .get(Uri.parse('${NetworkConstants.baseUrl}?q=set.name:$query'));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        var data2 = (data['data'] as List)
+            .map((e) => PokemonModel.fromJson(e))
+            .toList();
+        pokemonModelList(data2);
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
     } finally {
       isLoading(false);
     }
