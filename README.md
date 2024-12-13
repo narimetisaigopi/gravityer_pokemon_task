@@ -1,16 +1,47 @@
-# gravityer_pokemon_task
+# Pokémon Card App
 
-A new Flutter project.
+A Flutter application to display a list of Pokémon cards with features like search, pagination, and detailed views.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## **Features**
+1. **Pokémon Card List**
+   - Fetch cards using the Pokémon TCG API.
+   - Display cards in a grid format (2x2) with pagination.
 
-A few resources to get you started if this is your first Flutter project:
+2. **Search**
+   - Search for cards by their set name.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+3. **Detailed Card View**
+   - Display details such as:
+     - Attack
+     - Set
+     - Type
+     - Weakness
+     - Artist
+     - Other stats
+   - Includes smooth animation when navigating to the detail page.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. **App Routing**
+   - Uses named routes for navigation.
+
+5. **Image Caching**
+   - Card images are cached for better performance and offline access.
+
+6. **State Management**
+   - Built using **GetX** for state management, navigation, and dependency injection.
+
+---
+
+## **Tech Stack**
+- **Flutter**: UI Framework
+- **GetX**: State management and routing
+- **cached_network_image**: Image caching
+- **http**: API calls
+
+---
+
+## **Setup Instructions**
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/narimetisaigopi/gravityer_pokemon_task.git
